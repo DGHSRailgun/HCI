@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.his.springbootstartup.dao.RegistrationMapper">
+    <resultMap id="BaseResultMap" type="com.his.springbootstartup.model.RegistrationInfo">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="MedicalRecord_Num" jdbcType="INTEGER" property="medicalRecordNum"/>
+        <result column="Name" jdbcType="VARCHAR" property="name"/>
+        <result column="Sex" jdbcType="INTEGER" property="sex"/>
+        <result column="IDCard_NO" jdbcType="VARCHAR" property="idCardNum"/>
+        <result column="Birth_Date" jdbcType="DATE" property="birthDate"/>
+        <result column="Age" jdbcType="INTEGER" property="age"/>
+        <result column="Age_Type" jdbcType="VARCHAR" property="ageType"/>
+        <result column="Address" jdbcType="VARCHAR" property="address"/>
+        <result column="Date" jdbcType="DATE" property="date"/>
+        <result column="Wubie" jdbcType="VARCHAR" property="wuBie"/>
+        <result column="RegDepart_ID" jdbcType="INTEGER" property="regDepartId"/>
+        <result column="RegDoc_ID" jdbcType="INTEGER" property="regDocId"/>
+        <result column="RegLevel_ID" jdbcType="INTEGER" property="regLevelId"/>
+        <result column="SettlementType_ID" jdbcType="INTEGER" property="settlementTypeId"/>
+        <result column="WhetherMedical_Book" jdbcType="VARCHAR" property="whetherMediBook"/>
+        <result column="Reg_Time" jdbcType="VARCHAR" property="regTime"/>
+        <result column="Registrar_ID" jdbcType="INTEGER" property="registrarId"/>
+        <result column="Visit_State" jdbcType="INTEGER" property="visitState"/>
+        <result column="Delete" jdbcType="INTEGER" property="delete"/>
+    </resultMap>
+
+
+
+</mapper>

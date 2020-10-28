@@ -1,0 +1,416 @@
+<!--_meta 作为公共模版分离出去-->
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="Bookmark" href="/favicon.ico" >
+    <link rel="Shortcut Icon" href="/favicon.ico" />
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="lib/html5shiv.js"></script>
+    <script type="text/javascript" src="lib/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" type="text/css" href="static/h-ui/css/H-ui.min.css" />
+    <link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/H-ui.admin.css" />
+    <link rel="stylesheet" type="text/css" href="lib/Hui-iconfont/1.0.8/iconfont.css" />
+    <link rel="stylesheet" type="text/css" href="static/h-ui.admin/skin/default/skin.css" id="skin" />
+    <link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/style.css" />
+    <!--[if IE 6]>
+    <script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+    <script>DD_belatedPNG.fix('*');</script>
+    <![endif]-->
+    <!--/meta 作为公共模版分离出去-->
+
+    <title>现场挂号</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+</head>
+<body>
+<article class="page-container">
+    <form action="" method="post" class="form form-horizontal" id="form-member-add-test">
+        <div class="row cl">
+            <label class="form-label col-xs-1 col-sm-1"><span class="c-red">*</span>发票号：</label>
+            <div class="formControls col-xs-2 col-sm-2">
+                <input type="text" class="input-text" value="" placeholder="" id="invoice" name="invoice">
+            </div>
+            <div class="formControls col-xs-2 col-sm-2">
+                <input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;挂号&nbsp;&nbsp;" id="guahao">
+            </div>
+            <div class="formControls col-xs-2 col-sm-2">
+                <input class="btn btn-primary radius" type="reset" value="&nbsp;&nbsp;清空&nbsp;&nbsp;" id="qingkong">
+            </div>
+            <label class="form-label col-xs-5 col-sm-5"></label>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-1 col-sm-1">挂号信息</label>
+            <label class="form-label col-xs-11 col-sm-11"></label>
+        </div>
+        <div class="row cl">
+        <label class="form-label col-xs-1 col-sm-1"><span class="c-red">*</span>病历号：</label>
+        <div class="formControls col-xs-2 col-sm-2">
+            <input type="text" class="input-text" value="" placeholder="" id="medibooknum" name="medibooknum" onchange="getOld();">
+        </div>
+        <label class="form-label col-xs-1 col-sm-1"><span class="c-red">*</span>姓名：</label>
+        <div class="formControls col-xs-2 col-sm-2">
+            <input type="text" class="input-text" value="" placeholder="" id="username" name="username">
+        </div>
+        <label class="form-label col-xs-1 col-sm-1"><span class="c-red">*</span>性别：</label>
+        <div class="formControls col-xs-2 col-sm-2">
+				<span class="select-box"><select class="select" id="sex">
+					<option>男</option>
+					<option>女</option>
+				</select></span>
+        </div>
+        <label class="form-label col-xs-1 col-sm-1"><span class="c-red">*</span>年龄：</label>
+        <div class="formControls col-xs-1 col-sm-1">
+            <input type="text" class="input-text" value="" placeholder="" id="age" name="age">
+        </div>
+        <div class="formControls col-xs-1 col-sm-1">
+				<span class="select-box"><select class="select" id="ageType">
+					<option>岁</option>
+					<option>月</option>
+					<option>日</option>
+				</select></span>
+        </div>
+    </div>
+        <div class="row cl">
+            <label class="form-label col-xs-1 col-sm-1"><span class="c-red">*</span>出生日期：</label>
+            <div class="formControls col-xs-2 col-sm-2">
+                <input type="text" class="input-text" value="" placeholder="" id="birthdate" name="birthdate">
+            </div>
+            <label class="form-label col-xs-1 col-sm-1"><span class="c-red">*</span>身份证号：</label>
+            <div class="formControls col-xs-2 col-sm-2">
+                <input type="text" class="input-text" value="" placeholder="" id="idnum" name="idnum">
+            </div>
+            <label class="form-label col-xs-1 col-sm-1"><span class="c-red">*</span>家庭住址：</label>
+            <div class="formControls col-xs-2 col-sm-2">
+                <input type="text" class="input-text" value="" placeholder="" id="address" name="address">
+            </div>
+            <label class="form-label col-xs-1 col-sm-1"><span class="c-red">*</span>结算类别：</label>
+            <div class="formControls col-xs-1 col-sm-1">
+                <span class="select-box">
+                    <select id="settlementType"  class="select">
+				    </select>
+                </span>
+            </div>
+
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-1 col-sm-1"><span class="c-red">*</span>看诊日期：</label>
+            <div class="formControls col-xs-2 col-sm-2">
+                <input type="text" class="input-text" value="" placeholder="" id="visitdate" name="visitdate">
+            </div>
+            <label class="form-label col-xs-1 col-sm-1"><span class="c-red">*</span>午别：</label>
+            <div class="formControls col-xs-1 col-sm-1">
+                <span class="select-box">
+                    <select id="wubie"  class="select">
+                        <option>上午</option>
+                        <option>下午</option>
+				    </select>
+                </span>
+            </div>
+            <label class="form-label col-xs-1 col-sm-1"><span class="c-red">*</span>挂号科室：</label>
+            <div class="formControls col-xs-1 col-sm-1">
+                <span class="select-box">
+                    <select id="regdept"  class="select" onchange="showDoc();">
+				    </select>
+                </span>
+            </div>
+            <label class="form-label col-xs-1 col-sm-1"><span class="c-red">*</span>号别：</label>
+            <div class="formControls col-xs-1 col-sm-1">
+                <span class="select-box">
+                    <select id="haobie"  class="select" onchange="showFee(this.value); showDoc()">
+				    </select>
+                </span>
+            </div>
+            <label class="form-label col-xs-1 col-sm-1"><span class="c-red">*</span>看诊医生：</label>
+            <div class="formControls col-xs-1 col-sm-1">
+                <span class="select-box">
+                    <select id="yisheng"  class="select">
+				    </select>
+                </span>
+            </div>
+
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-1 col-sm-1"><span class="c-red">*</span>病历本：</label>
+            <div class="formControls col-xs-1 col-sm-1">
+                <span class="select-box">
+                    <select id="whethermedibook"  class="select">
+                        <option>是</option>
+                        <option>否</option>
+				    </select>
+                </span>
+            </div>
+            <label class="form-label col-xs-1 col-sm-1"><span class="c-red">*</span>应收金额：</label>
+            <div class="formControls col-xs-2 col-sm-2">
+                <input type="text" class="input-text" value="" placeholder="" id="payfee" name="payfee">
+            </div>
+            <label class="form-label col-xs-1 col-sm-1"><span class="c-red">*</span>收费方式：</label>
+            <div class="formControls col-xs-2 col-sm-2">
+				<span class="select-box"><select class="select" id="chargetype">
+				</select></span>
+            </div>
+
+
+        </div>
+
+    </form>
+</article>
+
+<!--_footer 作为公共模版分离出去-->
+<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="lib/layer/2.4/layer.js"></script>
+<script type="text/javascript" src="static/h-ui/js/H-ui.min.js"></script>
+<script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.js"></script> <!--/_footer 作为公共模版分离出去-->
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" src="lib/My97DatePicker/4.8/WdatePicker.js"></script>
+<script type="text/javascript" src="lib/jquery.validation/1.14.0/jquery.validate.js"></script>
+<script type="text/javascript" src="lib/jquery.validation/1.14.0/validate-methods.js"></script>
+<script type="text/javascript" src="lib/jquery.validation/1.14.0/messages_zh.js"></script>
+<script type="text/javascript" src="lib/jquery/jquery.js"></script>
+
+<script type="text/javascript">
+    $(function() {
+        $.ajax({
+            "url":"/registration/initpage",
+            "type":"get",
+            "dataType":"json",
+            "success":function(info){
+                $("#invoice").val(info.invNum);
+                $("#medibooknum").val(info.meidRecordNum);
+                var st = info.settlementType;
+                var dep = info.department;
+                var doc = info.doctor;
+                var reg = info.reglevel;
+                var ct = info.chatype;
+
+                for(var i = 0;i<st.length;i++){
+                    $("#settlementType").append("<option value='" + st[i].id + "'>" + st[i].typeName + "</option>");
+                }
+
+                for(var i = 0;i<dep.length;i++){
+                    $("#regdept").append("<option value='" + dep[i].id + "'>" + dep[i].deptName + "</option>");
+                }
+
+                for(var i = 0;i<reg.length;i++){
+                    $("#haobie").append("<option value='" + reg[i].id + "'>" + reg[i].regName + "</option>");
+                }
+
+                for(var i = 0;i<doc.length;i++){
+                    $("#yisheng").append("<option value='" + doc[i].id + "'>" + doc[i].trueName + "</option>");
+                }
+
+                for(var i = 0;i<ct.length;i++){
+                    $("#chargetype").append("<option value='" + ct[i].id + "'>" + ct[i].contantName + "</option>");
+                }
+            },
+            "error":function (err) {
+                alert("error");
+            }
+        });
+
+    });
+
+    function showFee(haobieId){
+        $.ajax({
+            "url":"/registration/reregfee",
+            "type":"get",
+            "dataType":"json",
+            "data":{regisId:haobieId},
+            "success":function(regfee){
+                $("#payfee").val(regfee);
+            },
+            "error":function(err){
+                alert("error");
+            }
+        });
+    }
+
+    function showDoc(){
+        var deptId = $("#regdept").val();
+        var haobieId = $("#haobie").val();
+        $.ajax({
+            "url":"/registration/redoc",
+            "type":"get",
+            "dataType":"json",
+            "data":{deptId:deptId,reglevelId:haobieId},
+            "success":function(info){
+                var doctor = info.doc;
+                $("#yisheng").empty();
+                for(var i = 0;i<doctor.length;i++){
+                    $("#yisheng").append("<option value='" + doctor[i].id + "'>" + doctor[i].trueName + "</option>");
+                }
+            },
+            "error":function(err){
+                alert("error");
+            }
+        });
+    }
+
+    function getOld(){
+        $("#medibooknum").keyup(function(){
+            $("#medibooknum").val();
+        });
+        $.ajax({
+            "url":"/registration/getoldinfo",
+            "type":"get",
+            "dataType":"json",
+            "data":{mediBookNum:$("#medibooknum").val()},
+            "success":function(mediinfo){
+                if (mediinfo.messg != "查无此人"){
+                    $("#username").val(mediinfo.name);
+                    $("#sex").val(mediinfo.sex);
+                    $("#birthdate").val(mediinfo.birthDate);
+                    $("#idnum").val(mediinfo.idNum);
+                }else{
+                    alert(mediinfo.messg);
+                    location.reload();
+                }
+            },
+            "error":function(err){
+                alert("error");
+            }
+
+        });
+    }
+
+</script>
+
+
+
+<!--<script type="text/javascript">-->
+<!--    $(function(){-->
+<!--        $('.skin-minimal input').iCheck({-->
+<!--            checkboxClass: 'icheckbox-blue',-->
+<!--            radioClass: 'iradio-blue',-->
+<!--            increaseArea: '20%'-->
+<!--        });-->
+
+<!--        $("#form-member-add-test").validate({-->
+<!--            rules:{-->
+<!--                username:{-->
+<!--                    required:true,-->
+<!--                    minlength:2,-->
+<!--                    maxlength:16-->
+<!--                },-->
+<!--                sex:{-->
+<!--                    required:true,-->
+<!--                },-->
+<!--                mobile:{-->
+<!--                    required:true,-->
+<!--                    isMobile:true,-->
+<!--                },-->
+<!--                email:{-->
+<!--                    required:true,-->
+<!--                    email:true,-->
+<!--                },-->
+<!--                uploadfile:{-->
+<!--                    required:true,-->
+<!--                },-->
+
+<!--            },-->
+<!--            onkeyup:false,-->
+<!--            focusCleanup:true,-->
+<!--            success:"valid",-->
+<!--            submitHandler:function(form){-->
+<!--                //$(form).ajaxSubmit();-->
+<!--                var index = parent.layer.getFrameIndex(window.name);-->
+<!--                //parent.$('.btn-refresh').click();-->
+<!--                parent.layer.close(index);-->
+<!--            }-->
+<!--        });-->
+<!--    });-->
+<!-- </script>-->
+
+<!--表单验证-->
+<script type="text/javascript">
+    $("#guahao").click(function(){
+        $("#form-member-add-test").validate({
+            rules:{
+                username:{
+                    required:true,
+                    isChinese:true
+                },
+                age:{
+                    required:true,
+                    digits:true
+                },
+                birthdate:{
+                    required:true,
+                    dateISO:true
+                },
+                idnum:{
+                    required:true,
+                    isIdCardNo:true
+                },
+                address:{
+                    required:true
+                },
+                visitdate:{
+                    required:true,
+                    dateISO:true
+                }
+            },
+            onkeyup:false,
+            focusCleanup:true,
+            success:"valid",
+            submitHandler:function(form){
+                $(form).ajaxSubmit({
+                    "url":"/registration/reg",
+                    "type":"get",
+                    "data":{medirecordNum:$("#medibooknum").val(),
+                            name:$("#username").val(),
+                            sex:$("#sex").val(),
+                            idNum:$("#idnum").val(),
+                            birthDate:$("#birthdate").val(),
+                            age:$("#age").val(),
+                            ageType:$("#ageType").val(),
+                            address:$("#address").val(),
+                            date:$("#visitdate").val(),
+                            wuBie:$("#wubie").val(),
+                            regDeptId:$("#regdept").val(),
+                            regDocId:$("#yisheng").val(),
+                            regLevelId:$("#haobie").val(),
+                            settlementTypeId:$("#settlementType").val(),
+                            whetherMediBook:$("#whethermedibook").val()
+                    },
+                    "success":function () {
+                        // alert("success");
+                        $.ajax({
+                            "url":"/registration/getid",
+                            "type":"get",
+                            "dataType":"json",
+                            "success":function(id) {
+                                alert("挂号ID: " + id.toString());
+                            },
+                            "error":function(err){
+                                alert("error!!!!");
+                            }
+                        });
+                    },
+                    "error":function(err){
+                        alert("error");
+                    }
+                });
+            }
+        });
+    });
+</script>
+
+
+<!--/请在上方写此页面业务相关的脚本-->
+</body>
+</html>
+
+
+
+
+
+
+
+
