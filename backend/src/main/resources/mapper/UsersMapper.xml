@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.his.springbootstartup.dao.UsersMapper">
+    <resultMap id="BaseResultMap" type="com.his.springbootstartup.model.Users">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="Login_Name" jdbcType="VARCHAR" property="loginName"/>
+        <result column="Password" jdbcType="VARCHAR" property="passWord"/>
+        <result column="True_Name" jdbcType="VARCHAR" property="trueName"/>
+        <result column="UserType_ID" jdbcType="INTEGER" property="userTypeID"/>
+        <result column="DoctorTitle_ID" jdbcType="INTEGER" property="doctorTitleID"/>
+        <result column="Whether_Schedule" jdbcType="VARCHAR" property="whetherSchedule"/>
+        <result column="Department_ID" jdbcType="INTEGER" property="departmentID"/>
+        <result column="RegistrationLevel_ID" jdbcType="INTEGER" property="registrationLevelID"/>
+        <result column="Delete" jdbcType="INTEGER" property="delete"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+      *
+    </sql>
+
+    <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from users
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+</mapper>
